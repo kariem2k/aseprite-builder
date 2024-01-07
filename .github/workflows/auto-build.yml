@@ -110,17 +110,17 @@ jobs:
 
         curl -L -o D:/a/$REPO_NAME/$REPO_NAME/build/bin/libcrypto-1_1-x64.dll https://github.com/feenkcom/libopenssl/releases/download/v0.5.0/crypto-x86_64-pc-windows-msvc.dll
 
-    # # 为了遵守 Aseprite 的 EULA, 请确保仓库为私有再启用该功能
-    # - name: 上传文件到 artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: aseprite 
-    #     path: |
-    #       REPO_NAME=${{ steps.get-content.outputs.repo-name }}
+    # 为了遵守 Aseprite 的 EULA, 请确保仓库为私有再启用该功能
+    - name: 上传文件到 artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: aseprite 
+        path: |
+          REPO_NAME=${{ steps.get-content.outputs.repo-name }}
 
-    #       D:/a/$REPO_NAME/$REPO_NAME/build/bin/data
-    #       D:/a/$REPO_NAME/$REPO_NAME/build/bin/aseprite.exe
-    #       D:/a/$REPO_NAME/$REPO_NAME/build/bin/libcrypto-1_1-x64.dll
+          D:/a/$REPO_NAME/$REPO_NAME/build/bin/data
+          D:/a/$REPO_NAME/$REPO_NAME/build/bin/aseprite.exe
+          D:/a/$REPO_NAME/$REPO_NAME/build/bin/libcrypto-1_1-x64.dll
 
     - name: 打包
       shell: bash
@@ -143,3 +143,4 @@ jobs:
         prerelease: false
         files: |
           D:/a/aseprite.${{ needs.check.outputs.tag }}.zip
+
